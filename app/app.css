@@ -23,7 +23,7 @@ ul {
 }
 
 ul>li {
-    padding-top: 4px;;
+    padding-top: 4px;
     padding-bottom: 4px;
 }
 
@@ -68,4 +68,32 @@ progress[value]::-webkit-progress-value {
     -webkit-user-select: none;
     margin: 6px 10px 6px 10px;
     font-size: large;
+}
+
+.completion-icon {
+    color: green;
+    vertical-align: bottom;
+    visibility: hidden;
+}
+
+.loader {
+    vertical-align: bottom;
+    display: inline-block;
+    border: 2px solid #f3f3f3;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    visibility: hidden;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
