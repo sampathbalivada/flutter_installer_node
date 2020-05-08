@@ -21,7 +21,7 @@ function createWindow() {
         resizable: false
     })
 
-    win.loadFile('app/home/index.html');
+    win.loadFile('app/download/index.html');
 
     win.webContents.openDevTools();
 }

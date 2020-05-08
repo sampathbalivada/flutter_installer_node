@@ -4,34 +4,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>Flutter Installer</title>
+    <script src="../../materialize/js/materialize.min.js"></script>
     <link rel="stylesheet" href="../app.css">
     <script src="../app.js"></script>
+    <script src="./download.js"></script>
 </head>
 
-<body class="valign-wrapper">
+<body>
     <button class="topcorner" id="close-button" onclick="closeWindow()">
-        <i class="material-icons" style="margin: 6px 10px 6px 10px; font-size: large;">close</i>
+        <i class="material-icons close-button">close</i>
     </button>
 
-    <div class="container">
-
-        <!-- <img src="../../assets/flutter.gif" class="" style="width: 100%;"> -->
-        <!-- <div class="center-align">
-            <a href="javascript:void(0)" onclick="nextPage()"
-                class="waves-effect waves-light light-blue darken-1 btn">Install
-                Flutter</a>
+    <div class="valign-wrapper" style="width: 100%; height: 98%;">
+        <div class="container" style="padding-top: 10%; height: 100%;">
+            <div class="left-align">
+                <h5>These items will be downloaded and installed:</h5>
+            </div>
+            <div class="left-align">
+                <ul>
+                    <li>
+                        Android Command Line tools
+                    </li>
+                    <li>
+                        Open JDK 8
+                    </li>
+                    <li>
+                        Gradle Build Tools
+                    </li>
+                    <li>
+                        Flutter SDK
+                    </li>
+                    <li>
+                        Fluter VS Code Extension
+                    </li>
+                </ul>
+            </div>
+            <div class="center-align">
+                <a href="javascript:void(0)"
+                    onclick="downloadTest('https://www.w3.org/People/mimasa/test/imgformat/img/w3c_home.png')"
+                    class="waves-effect waves-light light-blue darken-1 btn">Start Download</a>
+            </div>
         </div>
-        <div class="center-align">
-            <p style="font-style: italic;">Does not install <strong>Android Studio</strong>.<br> Installs minimal amount
-                of components to build Flutter applications with <strong>Visual Studio Code</strong>.</p>
-        </div> -->
+
     </div>
+    <!-- <p style="position: absolute; left: 10px; bottom: 1%;">80%</p> -->
+    <progress max='100' value='80'></progress>
 
 </body>
 

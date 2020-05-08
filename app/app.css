@@ -17,6 +17,36 @@ strong {
     font-weight: 600;
 }
 
+ul {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+ul>li {
+    padding-top: 4px;;
+    padding-bottom: 4px;
+}
+
+progress[value] {
+    /* Reset the default appearance */
+    -webkit-appearance: none;
+
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 1.5%;
+}
+
+progress[value]::-webkit-progress-bar {
+    background-color: #d5d7da;
+    border-radius: 2px;
+}
+
+progress[value]::-webkit-progress-value {
+    background-color: #02569b;
+    border-radius: 2px;
+}
+
 .btn {
     text-transform: none;
 }
@@ -32,4 +62,10 @@ strong {
 .topcorner:hover {
     background-color: #f44336;
     color: white;
+}
+
+.close-button {
+    -webkit-user-select: none;
+    margin: 6px 10px 6px 10px;
+    font-size: large;
 }

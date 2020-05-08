@@ -5,20 +5,16 @@ var currentPageID = 0;
 
 function nextPage() {
     currentPageID++;
-    if(currentPageID < pages.length) {
+    if (currentPageID < pages.length) {
         window.location.href = `../${pages[currentPageID]}/index.html`;
     }
 }
 
 function previousPage(params) {
     currentPageID++;
-    if(currentPageID > 0) {
+    if (currentPageID > 0) {
         window.location.href = `../${pages[currentPageID]}/index.html`;
     }
-}
-
-function nextPage() {
-    window.location.href = '../download/index.html';
 }
 
 function closeWindow() {
@@ -37,4 +33,9 @@ function downsLoadFile(url) {
 
         console.log("DONE: " + info.url);
     });
+}
+
+function reset() {
+    currentPageID = 0;
+    window.location.href = `../${pages[currentPageID]}/index.html`;
 }
