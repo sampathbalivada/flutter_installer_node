@@ -1,0 +1,31 @@
+html {
+    font-family: 'Open Sans', sans-serif;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+}
+
+strong {
+    font-weight: 600;
+}
+
+.btn {
+    text-transform: none;
+}
+
+.topcorner {
+    border: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #81d4fa;
+}
+
+.topcorner:hover {
+    background-color: #f44336;
+    color: white;
+}

@@ -1,0 +1,17 @@
+{
+  "name": "flutter_installer",
+  "version": "0.0.1",
+  "description": "An installation toolkit for the flutter framework",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^8.2.3"
+  },
+  "author": "sampathbalivada",
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "electron-download-manager": "^2.1.2"
+  }
+}
