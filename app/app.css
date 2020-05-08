@@ -1,5 +1,9 @@
+@import '../fonts/OpenSans.css';
+@import '../fonts/MaterialIcons.css';
+@import '../materialize/css/materialize.min.css';
+
 html {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans';
     height: 100%;
     width: 100%;
 }
