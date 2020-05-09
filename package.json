@@ -12,8 +12,6 @@
   "author": "sampathbalivada",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "electron-download-manager": "^2.1.2",
-    "materialize-css": "^1.0.0-rc.2",
     "request": "^2.88.2"
   }
 }
