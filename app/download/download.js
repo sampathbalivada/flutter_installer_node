@@ -63,3 +63,12 @@ function downloadTest(fileURL) {
         alert("File succesfully downloaded");
     });
 }
+
+function startDownload() {
+    var download_button = document.getElementById('download-button');
+    var items = ["command-line-tools", "jdk", "flutter-sdk"];
+    download_button.onclick = '';
+    download_button.classList.add("disabled");
+
+    
+}
