@@ -3,12 +3,6 @@ const {
     BrowserWindow
 } = require('electron');
 
-const DownloadManager = require("electron-download-manager");
-
-DownloadManager.register({
-    downloadFolder: app.getPath("downloads") + "/my-app"
-});
-
 function createWindow() {
     let win = new BrowserWindow({
         width: 1000,
