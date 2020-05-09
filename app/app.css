@@ -6,6 +6,7 @@ html {
     font-family: 'Open Sans';
     height: 100%;
     width: 100%;
+    -webkit-user-select: none;
 }
 
 body {
@@ -51,12 +52,19 @@ progress[value]::-webkit-progress-value {
     text-transform: none;
 }
 
+.titlebar {
+    width: 100%;
+    height: 32px;
+    -webkit-app-region: drag;
+}
+
 .topcorner {
     border: none;
     position: fixed;
     top: 0;
     right: 0;
     background-color: #81d4fa;
+    -webkit-app-region: no-drag;
 }
 
 .topcorner:hover {

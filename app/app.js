@@ -1,17 +1,16 @@
 const remote = require('electron').remote;
 
-var pages = ['home', 'download']
-var currentPageID = 0;
+var pages = ['home', 'download', 'install']
 
-function nextPage() {
+function nextPage(currentPageID) {
     currentPageID++;
     if (currentPageID < pages.length) {
         window.location.href = `../${pages[currentPageID]}/index.html`;
     }
 }
 
-function previousPage(params) {
-    currentPageID++;
+function previousPage(currentPageID) {
+    currentPageID--;
     if (currentPageID > 0) {
         window.location.href = `../${pages[currentPageID]}/index.html`;
     }

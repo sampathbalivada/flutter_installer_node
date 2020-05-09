@@ -12,14 +12,16 @@
 </head>
 
 <body>
-    <button class="topcorner" id="close-button" onclick="closeWindow()">
-        <i class="material-icons close-button">close</i>
-    </button>
+    <div class="titlebar">
+        <button class="topcorner" id="close-button" onclick="closeWindow()">
+            <i class="material-icons close-button">close</i>
+        </button>
+    </div>
 
-    <div class="valign-wrapper" style="width: 100%; height: 85%;">
+    <div class="valign-wrapper" style="width: 100%; height: 80%;">
         <div class="container" style="padding-top: 10%; height: 100%;">
             <div class="left-align">
-                <h5>These items will be downloaded:</h5>
+                <h5>These components will be downloaded:</h5>
             </div>
             <div class="left-align">
                 <ul>
@@ -52,7 +54,7 @@
             class="waves-effect waves-light light-blue darken-1 btn">Start Download</a>
     </div>
     <!-- <p style="position: absolute; left: 10px; bottom: 1%;">80%</p> -->
-    <progress max='100' value='0'></progress>
+    <progress id="progress-bar" max='100' value='0'></progress>
 
 </body>
 
