@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flutter Installer</title>
+    <script src="../../materialize/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="../app.css">
+    <script src="../app.js"></script>
+</head>
+
+<body>
+    <div class="titlebar">
+        <button class="topcorner" id="close-button" onclick="closeWindow()">
+            <i class="material-icons close-button">close</i>
+        </button>
+    </div>
+
+    <div class="valign-wrapper" style="width: 100%; height: 65%;">
+        <div class="container" style="padding-top: 10%; height: 100%;">
+            <div class="left-align">
+                <h5>Installation Successful</h5>
+                <p>We've successfully installed Flutter SDK on your PC. If you feedback for the utility or if you want
+                    to contribute, visit the repository on <a href="javascript:void(0)"
+                        onclick="openURL('https://github.com/sampathbalivada/flutter_installer')"
+                        style="-webkit-user-select: text;">GitHub</a>.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row center-align">
+        <p style="font-style: italic;">Flutter, Android and the related logos are trademarks of Google LLC.</p>
+    </div>
+
+    <!-- button bar -->
+    <div class="row center-align">
+        <a id="download-button" href="javascript:void(0)" onclick="startDownload()"
+            class="waves-effect waves-light light-blue darken-1 btn">Next</a>
+    </div>
+
+</body>
+
+</html>

@@ -11,6 +11,7 @@ function startDownload() {
     dwn.getURLs('https://raw.githubusercontent.com/sampathbalivada/flutter_installer/master/urls.json?token=AGLFFNEZK75GHLTNLMTQOR26X57GO')
         .then((fetchedURLs) => {
             urls = fetchedURLs;
+            showFileNames(urls);
 
             // Downloading Android command-line tools
             document.getElementById('cmd-loader').style.visibility = 'visible';
@@ -72,4 +73,10 @@ function startDownload() {
             download_button.innerHTML = 'Install Components';
             download_button.setAttribute('onclick', 'nextPage(1)');
         })
+}
+
+function showFileNames(urls) {
+    document.getElementById('cmd-name').innerHTML += dwn.getFilenameFromUrl(urls['command-line-tools']);
+    document.getElementById('jdk-name').innerHTML += dwn.getFilenameFromUrl(urls['jdk']);
+    document.getElementById('sdk-name').innerHTML += dwn.getFilenameFromUrl(urls['flutter-sdk']);
 }

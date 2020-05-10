@@ -1,6 +1,7 @@
 const remote = require('electron').remote;
+const shell = require('electron').shell;
 
-var pages = ['home', 'download', 'install']
+var pages = ['home', 'download', 'install', 'finish']
 
 function nextPage(currentPageID) {
     currentPageID++;
@@ -24,4 +25,8 @@ function closeWindow() {
 function reset() {
     currentPageID = 0;
     window.location.href = `../${pages[currentPageID]}/index.html`;
+}
+
+function openURL(url) {
+    shell.openExternal(url);
 }

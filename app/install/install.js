@@ -1,44 +1,78 @@
 const fs = require('fs');
-const request = require('request');
 const dwn = require('../download-helper');
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
+
 const extract = require('extract-zip');
 
 const folder = "D:\\Android";
 
-function unzipFiles() {
+// Set this constant to `true` while debugging
+// Should always be `false` while building a release
+const debug = true;
+
+function installComponents() {
     var urls;
     var jdkDirName;
     dwn.getURLs('https://raw.githubusercontent.com/sampathbalivada/flutter_installer/master/urls.json?token=AGLFFNEZK75GHLTNLMTQOR26X57GO')
         .then((fetchedURLs) => {
             urls = fetchedURLs;
-            console.log('Promise 0')
+
+            // Show loaders
+            document.getElementById('cmd-loader').style.visibility = 'visible';
+
 
             // Unzip command-line-tools
+            if (debug) {
+                return;
+            }
             var fileName = dwn.getFilenameFromUrl(urls['command-line-tools'])
             return extract(folder + "\\" + fileName, {
                 dir: folder + "\\cmdline-tools"
             });
+
         })
         .then(() => {
-            console.log("Promise 1");
+            // Reflect progress and modify loaders for current state
+            document.getElementById('progress-bar').value = 20;
+            document.getElementById('cmd-loader').style.display = 'none';
+            document.getElementById('cmd-done').style.visibility = 'visible';
+            document.getElementById('jdk-loader').style.visibility = 'visible';
 
             // Unzip JDK
+            if (debug) {
+                return;
+            }
             var fileName = dwn.getFilenameFromUrl(urls['jdk']);
             return extract(folder + "\\" + fileName, {
                 dir: folder
             });
+
         })
         .then(() => {
-            console.log("Promise 2");
+            // Reflect progress and modify loaders for current state
+            document.getElementById('progress-bar').value = 40;
+            document.getElementById('jdk-loader').style.display = 'none';
+            document.getElementById('jdk-done').style.visibility = 'visible';
+            document.getElementById('sdk-loader').style.visibility = 'visible';
 
             // Unzip Flutter SDK
+            if (debug) {
+                return;
+            }
             var fileName = dwn.getFilenameFromUrl(urls['flutter-sdk'])
             return extract(folder + "\\" + fileName, {
                 dir: folder
             });
+
         })
         .then(() => {
-            console.log("Promise 3");
+            // Reflect progress and modify loaders for current state
+            document.getElementById('progress-bar').value = 75;
+            document.getElementById('sdk-loader').style.display = 'none';
+            document.getElementById('sdk-done').style.visibility = 'visible';
+            document.getElementById('path-loader').style.visibility = 'visible';
+
             renameDirectories();
         })
 
@@ -46,28 +80,64 @@ function unzipFiles() {
 }
 
 function renameDirectories() {
-    fs.renameSync(folder + "\\cmdline-tools\\tools", folder + "\\cmdline-tools\\latest");
-    fs.readdir(folder, (err, files) => {
-        files.forEach((name) => {
-            if (name.substr(0, 3) == 'jdk') {
-                jdkDirName = name;
-                fs.renameSync(folder + "\\" + name, folder + "\\openjdk");
-            }
+    if (debug) {
+        document.getElementById('progress-bar').value = 80;
+        addComponentsToPath();
+    } else {
+        fs.renameSync(folder + "\\cmdline-tools\\tools", folder + "\\cmdline-tools\\latest");
+        fs.readdir(folder, (err, files) => {
+            files.forEach((name) => {
+                if (name.substr(0, 3) == 'jdk') {
+                    jdkDirName = name;
+                    fs.renameSync(folder + "\\" + name, folder + "\\openjdk");
+                    document.getElementById('progress-bar').value = 80;
+                    addComponentsToPath();
+                }
+            });
         });
-    });
+    }
 }
 
-function testZip() {
-    // var zip = new AdmZip(folder + "\\" + "OpenJDK8U-jdk_x86-32_windows_hotspot_8u252b09.zip");
-    // var entries = zip.getEntries();
-    // console.log(entries[0].entryName);
-    // entries.forEach((entry)=>{
-    //     console.log(entry.entryName);
-    // })
-    var source = folder + "\\flutter_windows_1.17.0-stable.zip";
-    extract(source, {
-        dir: folder
-    }).then(() => {
-        console.log('extracted');
-    })
+function addComponentsToPath() {
+    if (debug) {
+        document.getElementById('progress-bar').value = 100;
+        document.getElementById('path-loader').style.display = 'none';
+        document.getElementById('path-done').style.visibility = 'visible';
+        enableFinish();
+        return
+    } else {
+        exec('setx ANDROID_HOME "C:\\Android\\')
+            .then((stdout, stderr) => {
+                if (stderr) {
+                    console.log("Error Encountered");
+                    console.log(stderr.toString());
+                }
+                document.getElementById('progress-bar').value = 85;
+                return exec('setx JAVA_HOME "C:\\Android\\openjdk\\');
+            })
+            .then((stdout, stderr) => {
+                if (stderr) {
+                    console.log("Error Encountered");
+                    console.log(stderr.toString());
+                }
+                document.getElementById('progress-bar').value = 90;
+                return exec('setx path "%path%;"C:\\Android\\;C:\\Android\\cmdline-tools\\latest\\bin;C:\\Android\\flutter\\bin" ');
+            })
+            .then((stdout, stderr) => {
+                if (stderr) {
+                    console.log("Error Encountered");
+                    console.log(stderr.toString());
+                }
+                document.getElementById('path-loader').style.display = 'none';
+                document.getElementById('path-done').style.visibility = 'visible';
+                document.getElementById('progress-bar').value = 100;
+            })
+    }
 }
+
+function enableFinish(params) {
+    document.getElementById('finish-button').classList.remove('disabled');
+}
+
+// Comment this line while debugging. 
+document.onload = installComponents();

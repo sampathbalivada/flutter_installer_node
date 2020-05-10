@@ -20,13 +20,39 @@
 
     <div class="valign-wrapper" style="width: 100%; height: 80%;">
         <div class="container" style="padding-top: 10%; height: 100%;">
-            
+            <div class="left-align">
+                <h5>Extracting components:</h5>
+            </div>
+            <div class="left-align">
+                <ul>
+                    <li>
+                        <strong>Android command line tools</strong> &nbsp; &nbsp;
+                        <div id="cmd-loader" class="loader"></div>
+                        <i id="cmd-done" class="material-icons completion-icon">done</i>
+                    </li>
+                    <li>
+                        <strong>Open JDK 8</strong> &nbsp; &nbsp;
+                        <div id="jdk-loader" class="loader"></div>
+                        <i id="jdk-done" class="material-icons completion-icon">done</i>
+                    </li>
+                    <li>
+                        <strong>Flutter SDK</strong> &nbsp; &nbsp;
+                        <div id="sdk-loader" class="loader"></div>
+                        <i id="sdk-done" class="material-icons completion-icon">done</i>
+                    </li>
+                    <li>
+                        <strong>Adding components to Windows PATH</strong> &nbsp; &nbsp;
+                        <div id="path-loader" class="loader"></div>
+                        <i id="path-done" class="material-icons completion-icon">done</i>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 
     <!-- button bar -->
     <div class="row center-align">
-        <a id="download-button" href="javascript:void(0)" onclick="startDownload()"
+        <a id="finish-button" href="javascript:void(0)" onclick="nextPage(2)"
             class="waves-effect waves-light light-blue darken-1 btn disabled">Finish</a>
     </div>
     <progress id="progress-bar" max='100' value='0'></progress>
