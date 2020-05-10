@@ -27,16 +27,6 @@
             <div class="left-align">
                 <ul>
                     <li>
-                        <strong>Android command line tools</strong> &nbsp; &nbsp;
-                        <div id="cmd-loader" class="loader"></div>
-                        <i id="cmd-done" class="material-icons completion-icon">done</i>
-                    </li>
-                    <li>
-                        <strong>Open JDK 8</strong> &nbsp; &nbsp;
-                        <div id="jdk-loader" class="loader"></div>
-                        <i id="jdk-done" class="material-icons completion-icon">done</i>
-                    </li>
-                    <li>
                         <strong>Flutter SDK</strong> &nbsp; &nbsp;
                         <div id="sdk-loader" class="loader"></div>
                         <i id="sdk-done" class="material-icons completion-icon">done</i>
@@ -46,11 +36,6 @@
                         <div id="path-loader" class="loader"></div>
                         <i id="path-done" class="material-icons completion-icon">done</i>
                     </li>
-                    <li>
-                        <strong>Installing SDK Tools: API 28</strong> &nbsp; &nbsp;
-                        <div id="tools-loader" class="loader"></div>
-                        <i id="tools-done" class="material-icons completion-icon">done</i>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -58,7 +43,7 @@
 
     <!-- button bar -->
     <div class="row center-align">
-        <a id="next-button" href="javascript:void(0)" onclick="nextPage(2)"
+        <a id="next-button" href="javascript:void(0)" onclick="sdkNextPage(2)"
             class="waves-effect waves-light light-blue darken-1 btn disabled">Next</a>
     </div>
     <progress id="progress-bar" max='100' value='0'></progress>

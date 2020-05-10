@@ -17,6 +17,15 @@ function previousPage(currentPageID) {
     }
 }
 
+function sdkNextPage(currentPageID) {
+    currentPageID++;
+    if (currentPageID == 3) {
+        window.location.href = `../${pages[currentPageID]}/index.html`;
+    } else if (currentPageID < pages.length) {
+        window.location.href = `../sdk_${pages[currentPageID]}/index.html`;
+    }
+}
+
 function closeWindow() {
     var window = remote.getCurrentWindow();
     window.close();

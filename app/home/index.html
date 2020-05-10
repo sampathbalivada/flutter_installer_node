@@ -19,16 +19,33 @@
 
     <div class="valign-wrapper" style="width: 100%; height: 90%;">
         <div class="container">
-            <img src="../../assets/flutter.gif" class="" style="width: 100%;">
             <div class="center-align">
-                <a href="javascript:void(0)" onclick="nextPage(0)"
-                    class="waves-effect waves-light light-blue darken-1 btn">Install
-                    Flutter</a>
+                <img src="../../assets/flutter.gif" class="" style="max-width: 70%;">
             </div>
             <div class="center-align">
-                <p style="font-style: italic;">Does not install <strong>Android Studio</strong>.<br> Installs minimal
-                    amount
-                    of components to build Flutter applications with <strong>Visual Studio Code</strong>.</p>
+                <p style="font-style: italic;">
+                    Choose <strong>Install SDK Only</strong> if you already have <strong>Android Studio</strong> installed.
+                </p>
+            </div>
+            <div class="row">
+                <a href="javascript:void(0)" onclick="sdkNextPage(0)">
+                    <div class="col s5 push-s1">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="../../assets/sdk-only.svg">
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="javascript:void(0)" onclick="nextPage(0)">
+                    <div class="col s5 push-s1">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="../../assets/minimal.svg">
+                            </div>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </div>

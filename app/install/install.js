@@ -5,15 +5,14 @@ const exec = util.promisify(require('child_process').exec);
 
 const extract = require('extract-zip');
 
-const folder = "D:\\Android";
+const folder = "C:\\Android";
 
 // Set this constant to `true` while debugging
 // Should always be `false` while building a release
-const debug = true;
+const debug = false;
 
 function installComponents() {
     var urls;
-    var jdkDirName;
     dwn.getURLs('https://raw.githubusercontent.com/sampathbalivada/flutter_installer/master/urls.json?token=AGLFFNEZK75GHLTNLMTQOR26X57GO')
         .then((fetchedURLs) => {
             urls = fetchedURLs;
@@ -27,6 +26,9 @@ function installComponents() {
                 return;
             }
             var fileName = dwn.getFilenameFromUrl(urls['command-line-tools'])
+            if (fs.existsSync(folder + "\\cmdline-tools\\latest")) {
+                return
+            }
             return extract(folder + "\\" + fileName, {
                 dir: folder + "\\cmdline-tools"
             });
@@ -44,6 +46,9 @@ function installComponents() {
                 return;
             }
             var fileName = dwn.getFilenameFromUrl(urls['jdk']);
+            if (fs.existsSync(folder + "\\openjdk")) {
+                return
+            }
             return extract(folder + "\\" + fileName, {
                 dir: folder
             });
@@ -61,6 +66,9 @@ function installComponents() {
                 return;
             }
             var fileName = dwn.getFilenameFromUrl(urls['flutter-sdk'])
+            if (fs.existsSync(folder + "\\flutter")) {
+                return
+            }
             return extract(folder + "\\" + fileName, {
                 dir: folder
             });
@@ -84,17 +92,22 @@ function renameDirectories() {
         document.getElementById('progress-bar').value = 80;
         addComponentsToPath();
     } else {
-        fs.renameSync(folder + "\\cmdline-tools\\tools", folder + "\\cmdline-tools\\latest");
-        fs.readdir(folder, (err, files) => {
-            files.forEach((name) => {
-                if (name.substr(0, 3) == 'jdk') {
-                    jdkDirName = name;
-                    fs.renameSync(folder + "\\" + name, folder + "\\openjdk");
-                    document.getElementById('progress-bar').value = 80;
-                    addComponentsToPath();
-                }
+        if (!fs.existsSync(folder + "\\cmdline-tools\\latest")) {
+            fs.renameSync(folder + "\\cmdline-tools\\tools", folder + "\\cmdline-tools\\latest");
+        }
+        if (!fs.existsSync(folder + "\\openjdk")) {
+            //find JDK folder in the directory and rename
+            fs.readdir(folder, (err, files) => {
+                files.forEach((name) => {
+                    if (name.substr(0, 3) == 'jdk') {
+                        jdkDirName = name;
+                        fs.renameSync(folder + "\\" + name, folder + "\\openjdk");
+                    }
+                });
             });
-        });
+        }
+        document.getElementById('progress-bar').value = 80;
+        addComponentsToPath();
     }
 }
 
@@ -103,7 +116,9 @@ function addComponentsToPath() {
         document.getElementById('progress-bar').value = 100;
         document.getElementById('path-loader').style.display = 'none';
         document.getElementById('path-done').style.visibility = 'visible';
-        enableFinish();
+        document.getElementById('tools-loader').style.visibility = 'visible';
+
+        installSDKComponents();
         return
     } else {
         exec('setx ANDROID_HOME "C:\\Android\\')
@@ -130,13 +145,33 @@ function addComponentsToPath() {
                 }
                 document.getElementById('path-loader').style.display = 'none';
                 document.getElementById('path-done').style.visibility = 'visible';
-                document.getElementById('progress-bar').value = 100;
+                document.getElementById('tools-loader').style.visibility = 'visible';
+                document.getElementById('progress-bar').value = 95;
+
+                installSDKComponents();
             })
     }
 }
 
-function enableFinish(params) {
-    document.getElementById('finish-button').classList.remove('disabled');
+function installSDKComponents() {
+    if (debug) {
+        document.getElementById('progress-bar').value = 100;
+        document.getElementById('tools-loader').style.display = 'none';
+        document.getElementById('tools-done').style.visibility = 'visible';
+        enableNext();
+        return
+    } else {
+        exec('sdkmanager "platform-tools" "platforms;android-28" "build-tools;28.0.3"')
+            .then(() => {
+                document.getElementById('tools-loader').style.display = 'none';
+                document.getElementById('tools-done').style.visibility = 'visible';
+                enableNext();
+            })
+    }
+}
+
+function enableNext(params) {
+    document.getElementById('next-button').classList.remove('disabled');
 }
 
 // Comment this line while debugging. 
