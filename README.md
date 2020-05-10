@@ -1,18 +1,19 @@
 # Flutter Installer
-#### An installation toolkit for easy installation of Flutter SDK on Windows PCs
+#### An installation toolkit for Flutter SDK on Windows PCs
 \
-![screenshot](/screenshots/screen-1.png)
+![screenshot](/screenshots/screens.png)
 
-> Installs minimal amount of components needed to run flutter.
+\
+The user can choose from 2 installation modes:
+* SDK Only
+> This installs the FLutter SDK only to the user PC. Suitable for users who already have Android Studio installed or planning to install Android Studio
+* Minimal Components
+  * Android command line tools
+  * JDK 8
+  * Flutter SDK 
+> This installs minimal number of components to debug and build Flutter applications. Suitable for users who need a leaner Flutter installation.
 
-> Leaner than standard installation
-
-The installer installs the following components to the users PC:
-* Android command line tools
-* JDK 8
-* Flutter SDK 
-
-#### _More details will be added soon to README_
+_The scope of this project is currently limited to Windows PCs. The goal is to have a single place to maintain the Flutter SDK. Including checking and installing updates and viewing changelog._
 
 #### Attributions
-Thanks to the effort from the developers of electron js, node js, Material Design Icons, request and materialize css projects.
+Thanks to the effort from the developers of electron.js, node.js, Material Design, materialize css and other projects.
