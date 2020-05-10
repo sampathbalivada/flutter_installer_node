@@ -4,7 +4,9 @@
 ![screenshot](/screenshots/screens.png)
 
 \
-The user can choose from 2 installation modes:
+#### Click [here](https://github.com/sampathbalivada/flutter_installer/releases "Flutter Installer Downloads") to download the installer.
+\
+### The user can choose from 2 installation modes:
 * SDK Only
 > This installs the FLutter SDK only to the user PC. Suitable for users who already have Android Studio installed or planning to install Android Studio
 * Minimal Components
