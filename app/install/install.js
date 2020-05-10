@@ -161,8 +161,9 @@ function installSDKComponents() {
         enableNext();
         return
     } else {
-        exec('sdkmanager "platform-tools" "platforms;android-28" "build-tools;28.0.3"')
+        exec('C:\\Android\\cmdline-tools\\latest\\bin\\sdkmanager "platform-tools" "platforms;android-28" "build-tools;28.0.3"')
             .then(() => {
+                document.getElementById('progress-bar').value = 100;
                 document.getElementById('tools-loader').style.display = 'none';
                 document.getElementById('tools-done').style.visibility = 'visible';
                 enableNext();

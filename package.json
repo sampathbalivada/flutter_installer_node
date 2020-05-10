@@ -1,18 +1,29 @@
 {
   "name": "flutter_installer",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "An installation toolkit for the flutter framework",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "dist":"electron-builder",
+    "package-win": "electron-packager . flutter_installer --overwrite --asar=true --platform=win32 --arch=x64 --icon=assets/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Flutter Installer\""
   },
   "devDependencies": {
-    "electron": "^8.2.3"
+    "electron": "^8.2.3",
+    "electron-builder": "^22.6.0",
+    "electron-packager": "^14.2.1"
   },
   "author": "sampathbalivada",
   "license": "BSD-3-Clause",
   "dependencies": {
     "extract-zip": "^2.0.0",
     "request": "^2.88.2"
+  },
+  "build" : {
+    "appId" : "dev.sampath.futter-installer",
+    "win":{
+      "target":"portable",
+      "icon":"assets/icon.ico"
+    }
   }
 }
