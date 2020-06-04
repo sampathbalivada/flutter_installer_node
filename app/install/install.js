@@ -13,7 +13,19 @@ const debug = false;
 
 function installComponents() {
     var urls;
-    dwn.getURLs('https://raw.githubusercontent.com/sampathbalivada/flutter_installer/master/urls.json?token=AGLFFNEZK75GHLTNLMTQOR26X57GO')
+    dwn.downloadFile({
+            remoteFile: 'https://raw.githubusercontent.com/sampathbalivada/flutter_installer/master/refreshenv.cmd',
+            localFile: folder + "\\refreshenv.cmd",
+            onProgress: function (received, total) {
+                var percentage = (received * 100) / total;
+                console.log(percentage);
+            }
+        }).then(
+            () => {
+                return dwn.getURLs('https://raw.githubusercontent.com/sampathbalivada/flutter_installer/master/urls.json')
+            }
+        )
+        // dwn.getURLs('https://raw.githubusercontent.com/sampathbalivada/flutter_installer/master/urls.json')
         .then((fetchedURLs) => {
             urls = fetchedURLs;
 
@@ -161,7 +173,11 @@ function installSDKComponents() {
         enableNext();
         return
     } else {
-        exec('C:\\Android\\cmdline-tools\\latest\\bin\\sdkmanager "platform-tools" "platforms;android-28" "build-tools;28.0.3"')
+        // Refresh environment variables
+        exec('start ' + folder + '\\refreshenv.cmd')
+            .then(() => {
+                return exec('C:\\Android\\cmdline-tools\\latest\\bin\\sdkmanager "platform-tools" "platforms;android-28" "build-tools;28.0.3"')
+            })
             .then(() => {
                 document.getElementById('progress-bar').value = 100;
                 document.getElementById('tools-loader').style.display = 'none';
@@ -176,4 +192,4 @@ function enableNext(params) {
 }
 
 // Comment this line while debugging. 
-document.onload = installComponents();
+// document.onload = installComponents();
