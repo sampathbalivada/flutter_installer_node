@@ -8,7 +8,7 @@ function startDownload() {
     const progressIndicator = document.getElementById('progress-bar');
     download_button.onclick = '';
     download_button.classList.add("disabled");
-    dwn.getURLs('https://raw.githubusercontent.com/sampathbalivada/flutter_installer/master/urls.json?token=AGLFFNEZK75GHLTNLMTQOR26X57GO')
+    dwn.getURLs()
         .then((fetchedURLs) => {
             urls = fetchedURLs;
             showFileNames(urls);

@@ -1,12 +1,11 @@
 {
   "name": "flutter_installer",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "An installation toolkit for the flutter framework",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder",
-    "package-win": "electron-packager . flutter_installer --overwrite --asar=true --platform=win32 --arch=x64 --icon=assets/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Flutter Installer\""
+    "dist": "electron-builder"
   },
   "devDependencies": {
     "electron": "^8.2.3",
