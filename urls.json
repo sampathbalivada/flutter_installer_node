@@ -1,5 +1,4 @@
 {
-    "flutter-sdk" : "https://storage.googleapis.com/flutter_infra/releases/stable/windows/flutter_windows_1.17.0-stable.zip",
-    "command-line-tools" : "https://dl.google.com/android/repository/commandlinetools-win-6200805_latest.zip",
-    "jdk" : "https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u252-b09.1/OpenJDK8U-jdk_x86-32_windows_hotspot_8u252b09.zip"
+    "command-line-tools": "https://dl.google.com/android/repository/commandlinetools-win-6200805_latest.zip",
+    "jdk": "https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u252-b09.1/OpenJDK8U-jdk_x86-32_windows_hotspot_8u252b09.zip"
 }

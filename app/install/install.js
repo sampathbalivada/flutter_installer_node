@@ -22,7 +22,7 @@ function installComponents() {
             }
         }).then(
             () => {
-                return dwn.getURLs('https://raw.githubusercontent.com/sampathbalivada/flutter_installer/master/urls.json')
+                return dwn.getURLs()
             }
         )
         .then((fetchedURLs) => {

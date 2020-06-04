@@ -13,7 +13,7 @@ const debug = false;
 
 function installComponents() {
     var urls;
-    dwn.getURLs('https://raw.githubusercontent.com/sampathbalivada/flutter_installer/master/urls.json?token=AGLFFNEZK75GHLTNLMTQOR26X57GO')
+    dwn.getURLs()
         .then((fetchedURLs) => {
             urls = fetchedURLs;
 

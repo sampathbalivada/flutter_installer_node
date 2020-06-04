@@ -4,6 +4,7 @@ const fs = require('fs');
 exports.downloadFile = downloadFile;
 exports.getURLs = getURLs;
 exports.getFilenameFromUrl = getFilenameFromUrl;
+exports.getDataFromURL = getDataFromURL;
 
 function downloadFile(configuration) {
     return new Promise(function (resolve, reject) {
@@ -46,7 +47,7 @@ function downloadFile(configuration) {
     });
 }
 
-function getURLs(remoteURL) {
+function getDataFromURL(remoteURL) {
     return new Promise(function (resolve, reject) {
         var req = request.get(remoteURL, function (err, resp, body) {
             if (err) {
@@ -58,12 +59,40 @@ function getURLs(remoteURL) {
     })
 }
 
+function getURLs() {
+    var repoURLS;
+    return new Promise((resolve, reject) => {
+        getDataFromURL('https://raw.githubusercontent.com/sampathbalivada/flutter_installer/master/urls.json')
+            .then((data) => {
+                repoURLS = data;
+                return getDataFromURL('https://storage.googleapis.com/flutter_infra/releases/releases_windows.json');
+            })
+            .then((data) => {
+                current_release_stable_hash = data["current_release"]["beta"];
+                for (var i = 1, release = data["releases"][0]; i < data["releases"].length; i++) {
+                    if (release["hash"] != current_release_stable_hash) {
+                        repoURLS['flutter-sdk'] = data["base_url"] + "/" + release["archive"]
+                        resolve(repoURLS);
+                        break;
+                    }
+                    release = data["releases"][i];
+                }
+            })
+    })
+}
+
 function getFilenameFromUrl(url) {
     return url.substring(url.lastIndexOf('/') + 1);
 }
 
+// Use this function to test URL downloads
+function getURLsTest() {
+    getURLs().then((data) => {
+        console.log(data)
+    });
+}
+
 // Use this function to test file downloads
-// Will be removed when stable
 function downloadTest(fileURL) {
     var filename = getFilenameFromUrl(fileURL);
     var downloadsFolder = "D:\\Downloads";
