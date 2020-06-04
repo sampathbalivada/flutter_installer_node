@@ -62,3 +62,7 @@ goto main
 
     echo | set /p dummy="Finished."
     echo .
+    echo Accept the licenses by typing 'y' and then press 'Enter'
+    call C:\Android\cmdline-tools\latest\bin\sdkmanager --licenses
+    call C:\\Android\\cmdline-tools\\latest\\bin\\sdkmanager "platform-tools" "platforms;android-28" "build-tools;28.0.3"
+    exit
