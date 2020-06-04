@@ -70,7 +70,7 @@ function getURLs() {
             .then((data) => {
                 current_release_stable_hash = data["current_release"]["stable"];
                 for (var i = 1, release = data["releases"][0]; i < data["releases"].length; i++) {
-                    if (release["hash"] != current_release_stable_hash) {
+                    if (release["hash"] == current_release_stable_hash) {
                         repoURLS['flutter-sdk'] = data["base_url"] + "/" + release["archive"]
                         resolve(repoURLS);
                         break;
