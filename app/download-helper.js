@@ -40,6 +40,7 @@ function downloadFile(configuration) {
         }
 
         req.on('end', function () {
+            out.close();
             resolve();
         });
     });

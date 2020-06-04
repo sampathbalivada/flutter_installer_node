@@ -25,7 +25,6 @@ function installComponents() {
                 return dwn.getURLs('https://raw.githubusercontent.com/sampathbalivada/flutter_installer/master/urls.json')
             }
         )
-        // dwn.getURLs('https://raw.githubusercontent.com/sampathbalivada/flutter_installer/master/urls.json')
         .then((fetchedURLs) => {
             urls = fetchedURLs;
 
@@ -175,9 +174,6 @@ function installSDKComponents() {
     } else {
         // Refresh environment variables
         exec('start ' + folder + '\\refreshenv.cmd')
-            // .then(() => {
-            //     return exec('C:\\Android\\cmdline-tools\\latest\\bin\\sdkmanager "platform-tools" "platforms;android-28" "build-tools;28.0.3"')
-            // })
             .then(() => {
                 document.getElementById('progress-bar').value = 100;
                 document.getElementById('tools-loader').style.display = 'none';
