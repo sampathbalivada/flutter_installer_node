@@ -192,4 +192,4 @@ function enableNext(params) {
 }
 
 // Comment this line while debugging. 
-// document.onload = installComponents();
+document.onload = installComponents();
