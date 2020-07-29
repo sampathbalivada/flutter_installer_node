@@ -1,6 +1,8 @@
 # Flutter Installer
 #### An installation toolkit for Flutter SDK on Windows PCs
  
+### ⚠ This project is currently not maintained. An updated version with changed requirements is in works.
+ 
 ![screenshot](/screenshots/screens.png)
  
 #### Click [here](https://github.com/sampathbalivada/flutter_installer/releases "Flutter Installer Downloads") to download the installer.
