@@ -1,7 +1,10 @@
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-no-red.svg)]()
+
+
 # Flutter Installer
 #### An installation toolkit for Flutter SDK on Windows PCs
  
-### ⚠ This project is currently not maintained. An updated version with changed requirements is in works.
+### ⚠ An updated version with changed requirements is in works.
  
 ![screenshot](/screenshots/screens.png)
  
