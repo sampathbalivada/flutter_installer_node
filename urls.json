@@ -1,4 +1,4 @@
 {
-    "command-line-tools": "https://dl.google.com/android/repository/commandlinetools-win-6200805_latest.zip",
-    "jdk": "https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u252-b09.1/OpenJDK8U-jdk_x86-32_windows_hotspot_8u252b09.zip"
+    "command-line-tools": "https://dl.google.com/android/repository/commandlinetools-win-13114758_latest.zip",
+    "jdk": "https://github.com/adoptium/temurin25-binaries/releases/download/jdk-25.0.1%2B8/OpenJDK25U-jdk_x64_windows_hotspot_25.0.1_8.zip"
 }

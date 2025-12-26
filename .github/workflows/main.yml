@@ -1,0 +1,67 @@
+name: Build Executable
+
+on:
+  push: 
+    branches: [ main, master ]
+  pull_request: 
+    branches: [ main, master ]
+  workflow_dispatch:
+
+# Necessary permissions to create releases and tags
+permissions:
+  contents: write
+
+jobs: 
+  build:
+    runs-on: windows-latest
+    
+    steps: 
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    # 1. Extract version from package.json and save to Env Var
+    - name: Get Version from package.json
+      shell: bash
+      run: echo "VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
+
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Build executable
+      run: npm run dist
+      
+    # 2. Rename the output file using the extracted version
+    # Assumes builder outputs: "dist/flutter_installer 1.2.0.exe"
+    # Renames to: "dist/flutter_installer.1.2.0.exe"
+    - name: Rename executable
+      shell: bash
+      run: |
+        mv "dist/flutter_installer $VERSION.exe" "dist/flutter_installer.$VERSION.exe"
+      
+    # Optional: Still upload as artifact if you want to download it from the Actions tab
+    - name: Upload executable artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: flutter-installer-${{ env.VERSION }}
+        path: dist/flutter_installer.${{ env.VERSION }}.exe
+        retention-days: 30
+
+    # 3. Create Release and Tag
+    - name: Create Release
+      # Only create release on push to main/master (skip on PRs)
+      if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: v${{ env.VERSION }}
+        name: flutter_installer.${{ env.VERSION }}
+        files: dist/flutter_installer.${{ env.VERSION }}.exe
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
