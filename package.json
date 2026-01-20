@@ -8,7 +8,7 @@
     "dist": "electron-builder"
   },
   "devDependencies": {
-    "electron": "^11.5.0",
+    "electron": "^15.5.5",
     "electron-builder": "^22.6.0"
   },
   "author": "sampathbalivada",
